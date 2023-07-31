@@ -34,7 +34,7 @@
             // 
             // openFileDialog1
             // 
-            openFileDialog1.FileName = "openFileDialog1";
+            openFileDialog1.FileName = "";
             // 
             // button1
             // 
