@@ -82,8 +82,6 @@ namespace KitchenScale
                     StreamReader sr = new StreamReader(filePath);
 
                     string firstLine = sr.ReadLine();
-
-                    //if (firstLine)
                 }
                 catch
                 {
@@ -107,29 +105,20 @@ namespace KitchenScale
             try
             {
                 StreamReader sr = new StreamReader(filePath);
-
-                //string contents = sr.ReadToEnd();
-
-                string line;
-
-                /*while ((line = sr.ReadLine()) != null)
-                {
-
-                    
-                }*/
-
-                line = sr.ReadLine();
-                string scaled = fractionScale(line, 2);
-
                 using (StreamWriter sw = new StreamWriter("NewRecipe.txt"))
                 {
-                    sw.WriteLine(scaled);
+
+                    string line;
+
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        string scaled = fractionScale(line, 2);
+                        sw.WriteLine(scaled);
+                    }
+                    
                 }
 
-
-
-
-                //sr.Close();
+                sr.Close();
 
             }
             catch (Exception err)
