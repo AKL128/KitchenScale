@@ -21,6 +21,8 @@ namespace KitchenScale
             {"ml", "tsp"},
         };
 
+
+
         private static string fractionScale(string input, int scale)
         {
             int wholeNumber = 0;
@@ -70,6 +72,38 @@ namespace KitchenScale
     
 
             return result;
+        }
+
+        private static string unitStandard (string input)
+        {
+            string unit = input.Trim().ToLower();
+            if (unit == "teaspoon" || unit == "teaspoons" || unit == "tsp")
+            {
+                return "tsp";
+            }
+            
+            if (unit == "tablespoon" || unit == "tablespoons" || unit == "tbsp")
+            {
+                return "Tbsp";
+            }
+
+            if (unit == "cup" || unit == "cups")
+            {
+                return "cup";
+            }
+
+            if (unit == "ounce" || unit == "ounces" || unit == "oz")
+            {
+                return "oz";
+            }
+
+            return "ERROR";
+        }
+
+        private static string roundUnit(string unit)
+        {
+            
+            return unit;
         }
         private void button1_Click(object sender, EventArgs e)
         {
