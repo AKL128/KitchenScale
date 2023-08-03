@@ -23,49 +23,51 @@ namespace KitchenScale
 
         private static string fractionScale(string input, int scale)
         {
-            int wholeNumber;
+            int wholeNumber = 0;
             string fraction;
             int numerator;
             int denominator;
             string? result = "";
+
+            bool hasWholeNumber = false;
+
+            hasWholeNumber = input.Split(" ").Length > 1;
+
+            fraction = input;
             
-            if (input.Split(" ").Length >= 1)
+            if (hasWholeNumber == true)
             {
-                
                 wholeNumber = int.Parse(input.Split(" ")[0]);
-                
-                fraction = input.Split(" ")[1];
-
-                numerator = int.Parse(fraction.Split("/")[0]);
-
-                denominator = int.Parse(fraction.Split("/")[1]);
-
                 wholeNumber = wholeNumber * scale;
-                numerator = numerator * scale;
-                denominator = numerator * scale;
-
-                Fraction fraction1 = new Fraction(numerator, denominator);
-
-                fraction1 = fraction1.reduce();
-
-                result = wholeNumber.ToString();
-                result += " " + fraction1.getString();
-                return result;
+                fraction = input.Split(" ")[1];
             }
-            else
+
+            numerator = int.Parse(fraction.Split("/")[0]);
+
+            denominator = int.Parse(fraction.Split("/")[1]);
+
+            
+            numerator = numerator * scale;
+
+            Fraction fraction1 = new Fraction(numerator, denominator);
+            if (numerator >= denominator)
             {
-                numerator = int.Parse(input.Split("/")[0]);
-                denominator = int.Parse(input.Split("/")[1]);
-
-                numerator = numerator * scale;
-                denominator = numerator * scale;
-
-                Fraction fraction1 = new Fraction(numerator, denominator);
-
-                fraction1 = fraction1.reduce();
-                result = fraction1.ToString();
-                return result;
+                    wholeNumber += numerator / denominator;
             }
+
+            int quotient = fraction1.getNumerator / fraction1.getDenominator;
+            Debug.WriteLine("Q: " + quotient);
+            int remainder = fraction1.getNumerator - fraction1.getDenominator * quotient;
+            Debug.WriteLine(fraction1.getNumerator + "-" + fraction1.getDenominator + "*" + quotient);
+            fraction1 = new Fraction(remainder, denominator);
+
+            fraction1 = fraction1.reduce();
+
+            Debug.WriteLine($"{fraction1.getNumerator} / {fraction1.getDenominator}");
+
+            result = wholeNumber.ToString();
+            result += " " + fraction1.getString();
+    
 
             return result;
         }
@@ -112,7 +114,8 @@ namespace KitchenScale
 
                     while ((line = sr.ReadLine()) != null)
                     {
-                        string scaled = fractionScale(line, 2);
+                        string scaled = fractionScale(line, 6);
+
                         sw.WriteLine(scaled);
                     }
                     
@@ -160,6 +163,10 @@ namespace KitchenScale
 
         public string getString()
         {
+            if (numerator == 0)
+            {
+                return "";
+            }
             if (denominator == 1)
             {
                 return numerator.ToString();
