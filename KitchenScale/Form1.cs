@@ -146,15 +146,20 @@ namespace KitchenScale
 
                     string line;
 
-                    string amount;
-                    string leftOver;
-
-                    string unit;
-                    string ingredient;
+                    
 
                     while ((line = sr.ReadLine()) != null)
                     {
                         int count = 0;
+                        string amount;
+                        string leftOver;
+
+                        string unit;
+                        string ingredient;
+
+                        int temp;
+                        string scaled;
+
                         foreach (char c in line)
                         {
                             if (Char.IsLetter(c))
@@ -163,20 +168,26 @@ namespace KitchenScale
                             }
                             count++;
                         }
-
+                        
                         amount = line.Substring(0, count).TrimEnd();
-                        
+                        Debug.WriteLine(amount);
                         leftOver = line.Substring(count).TrimEnd();
-                        
+                        Debug.WriteLine(leftOver);
 
                         unit = leftOver.Split(" ", 2)[0];
-
                         ingredient = leftOver.Split(" ", 2)[1];
 
-                        string scaled = fractionScale(amount, 6);
-
+                        if (amount.Contains('/'))
+                        {
+                            scaled = fractionScale(amount, 6);
+                        }
+                        else
+                        {
+                            temp = int.Parse(amount) * 6;
+                            scaled = temp.ToString();
+                        }
+                        
                         sw.WriteLine(scaled + " " + unit + " " + ingredient);
-
                     }
                     
                 }
