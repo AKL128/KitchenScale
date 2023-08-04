@@ -11,14 +11,13 @@ namespace KitchenScale
         }
         private string filePath = "";
 
-        Dictionary<string, string> metricImperial = new Dictionary<string, string>()
+        Dictionary<string, string> imperialMetric = new Dictionary<string, string>()
         {
-            {"gram", "oz"},
-            {"g", "oz"},
-            {"liter", "qt"},
-            {"l", "qt"},
-            {"milliliter", "tsp"},
-            {"ml", "tsp"},
+            {"tsp", "ml"},
+            {"Tbsp", "ml"},
+            {"cup", "cup"},
+            {"cups", "cups"},
+            {"oz", "gram"},
         };
 
 
@@ -36,7 +35,7 @@ namespace KitchenScale
             hasWholeNumber = input.Split(" ").Length > 1;
 
             fraction = input;
-            
+
             if (hasWholeNumber == true)
             {
                 wholeNumber = int.Parse(input.Split(" ")[0]);
@@ -48,13 +47,13 @@ namespace KitchenScale
 
             denominator = int.Parse(fraction.Split("/")[1]);
 
-            
+
             numerator = numerator * scale;
 
             Fraction fraction1 = new Fraction(numerator, denominator);
             if (numerator >= denominator)
             {
-                    wholeNumber += numerator / denominator;
+                wholeNumber += numerator / denominator;
             }
 
             int quotient = fraction1.getNumerator / fraction1.getDenominator;
@@ -69,19 +68,19 @@ namespace KitchenScale
 
             result = wholeNumber.ToString();
             result += " " + fraction1.getString();
-    
+
 
             return result;
         }
 
-        private static string unitStandard (string input)
+        private static string unitStandard(string input)
         {
             string unit = input.Trim().ToLower();
             if (unit == "teaspoon" || unit == "teaspoons" || unit == "tsp")
             {
                 return "tsp";
             }
-            
+
             if (unit == "tablespoon" || unit == "tablespoons" || unit == "tbsp")
             {
                 return "Tbsp";
@@ -102,7 +101,7 @@ namespace KitchenScale
 
         private static string roundUnit(string unit)
         {
-            
+
             return unit;
         }
         private void button1_Click(object sender, EventArgs e)
@@ -111,18 +110,49 @@ namespace KitchenScale
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
 
-                MessageBox.Show(openFileDialog1.FileName);
                 filePath = openFileDialog1.FileName;
                 try
                 {
                     StreamReader sr = new StreamReader(filePath);
 
                     string firstLine = sr.ReadLine();
+
+                    int count = 0;
+
+                    string amount;
+                    string unit;
+                    string ingredient;
+
+                    string leftOver;
+
+                    foreach (char c in firstLine)
+                    {
+                        if (Char.IsLetter(c))
+                        {
+                            break;
+                        }
+                        count++;
+                    }
+
+                    amount = firstLine.Substring(0, count).TrimEnd();
+                    leftOver = firstLine.Substring(count).TrimEnd();
+
+                    unit = leftOver.Split(" ", 2)[0];
+                    ingredient = leftOver.Split(" ", 2)[1];
+
+                    string standardized = unitStandard(unit);
+                    if (imperialMetric.ContainsKey(standardized))
+                    {
+                        comboBox1.SelectedIndex = 1;
+                    }
                 }
                 catch
                 {
                     MessageBox.Show("Error opening file");
                 }
+                textBox1.Text = openFileDialog1.FileName;
+
+
             }
         }
 
@@ -146,7 +176,7 @@ namespace KitchenScale
 
                     string line;
 
-                    
+
 
                     while ((line = sr.ReadLine()) != null)
                     {
@@ -168,7 +198,7 @@ namespace KitchenScale
                             }
                             count++;
                         }
-                        
+
                         amount = line.Substring(0, count).TrimEnd();
                         Debug.WriteLine(amount);
                         leftOver = line.Substring(count).TrimEnd();
@@ -186,10 +216,10 @@ namespace KitchenScale
                             temp = int.Parse(amount) * 6;
                             scaled = temp.ToString();
                         }
-                        
+
                         sw.WriteLine(scaled + " " + unit + " " + ingredient);
                     }
-                    
+
                 }
 
                 sr.Close();
@@ -199,6 +229,16 @@ namespace KitchenScale
             {
                 MessageBox.Show("No File selected. Please select a file to run program.");
             }
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }
