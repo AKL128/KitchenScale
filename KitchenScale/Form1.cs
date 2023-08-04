@@ -11,6 +11,8 @@ namespace KitchenScale
         }
         private string filePath = "";
 
+        private int resizeMultiplier = 1;
+
         Dictionary<string, string> imperialMetric = new Dictionary<string, string>()
         {
             {"tsp", "ml"},
@@ -18,6 +20,8 @@ namespace KitchenScale
             {"cup", "cup"},
             {"cups", "cups"},
             {"oz", "gram"},
+            {"stick", "stick"},
+            {"sticks", "sticks"},
         };
 
 
@@ -65,9 +69,17 @@ namespace KitchenScale
             fraction1 = fraction1.reduce();
 
             Debug.WriteLine($"{fraction1.getNumerator} / {fraction1.getDenominator}");
-
-            result = wholeNumber.ToString();
-            result += " " + fraction1.getString();
+            if (wholeNumber == 0)
+            {
+                return result = fraction1.getString();
+            }
+            else
+            {
+                result = wholeNumber.ToString();
+                result += " " + fraction1.getString();
+                return result;
+            }
+            
 
 
             return result;
@@ -94,6 +106,11 @@ namespace KitchenScale
             if (unit == "ounce" || unit == "ounces" || unit == "oz")
             {
                 return "oz";
+            }
+
+            if (unit == "stick" || unit == "sticks")
+            {
+                return unit.Trim().ToLower();
             }
 
             return "ERROR";
@@ -141,7 +158,16 @@ namespace KitchenScale
                     ingredient = leftOver.Split(" ", 2)[1];
 
                     string standardized = unitStandard(unit);
+                    Debug.WriteLine(standardized);
                     if (imperialMetric.ContainsKey(standardized))
+                    {
+                        comboBox1.SelectedIndex = 1;
+                    }
+                    else if (imperialMetric.ContainsValue(standardized))
+                    {
+                        comboBox1.SelectedIndex = 2;
+                    }
+                    else
                     {
                         comboBox1.SelectedIndex = 1;
                     }
@@ -209,11 +235,11 @@ namespace KitchenScale
 
                         if (amount.Contains('/'))
                         {
-                            scaled = fractionScale(amount, 6);
+                            scaled = fractionScale(amount, resizeMultiplier);
                         }
                         else
                         {
-                            temp = int.Parse(amount) * 6;
+                            temp = int.Parse(amount) * resizeMultiplier;
                             scaled = temp.ToString();
                         }
 
@@ -240,6 +266,33 @@ namespace KitchenScale
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch(comboBox2.SelectedIndex)
+            {
+                case 0:
+                    resizeMultiplier = 2;
+                    break;
+                case 1: 
+                    resizeMultiplier = 3;
+                    break;
+                case 2: 
+                    resizeMultiplier = 4;
+                    break;
+                case 3: 
+                    resizeMultiplier = 5;
+                    break;
+                default: 
+                    resizeMultiplier = 1; 
+                    break;
+            }
         }
     }
 
