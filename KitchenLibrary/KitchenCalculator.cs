@@ -2,13 +2,17 @@
 
 namespace KitchenLibrary
 {
-    public class KitchenCalculator
+    public static class KitchenCalculator
     {
-        public string fractionInput { get; set; }
+        /*public string fractionInput { get; set; }
         public int resizeScale { get; set; }
 
-        public fractionScale
-        public string fractionScale(string input, int scale)
+        public KitchenCalculator(string fractionI, int resizeS)
+        {
+            fractionInput = fractionI;
+            resizeScale = resizeS;
+        }*/
+        public static string getResized(string input, int scale)
         {
             int wholeNumber = 0;
             string fraction;
@@ -62,6 +66,53 @@ namespace KitchenLibrary
                 return result;
             }
 
+        }
+
+        public static string unitStandard(string input)
+        {
+            string unit = input.Trim().ToLower();
+            if (unit == "teaspoon" || unit == "teaspoons" || unit == "tsp")
+            {
+                return "tsp";
+            }
+
+            if (unit == "tablespoon" || unit == "tablespoons" || unit == "tbsp")
+            {
+                return "Tbsp";
+            }
+
+            if (unit == "cup" || unit == "cups")
+            {
+                return "cup";
+            }
+
+            if (unit == "ounce" || unit == "ounces" || unit == "oz")
+            {
+                return "oz";
+            }
+
+            if (unit == "stick" || unit == "sticks")
+            {
+                return unit.Trim().ToLower();
+            }
+
+            return "ERROR";
+        }
+
+        public static double Convert(int milliliters)
+        {
+
+            const double CUP_TO_ML = 236.5882365;
+
+
+            double cups = milliliters / CUP_TO_ML;
+
+            return cups;
+        }
+        public static string roundUnit(string unit)
+        {
+
+            return unit;
         }
     }
 }

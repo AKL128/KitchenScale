@@ -28,58 +28,8 @@ namespace KitchenScale
             {"oz", "gram"},
             {"stick", "stick"},
             {"sticks", "sticks"},
-        };
+        };       
 
-        public static double Convert(int milliliters)
-        {
-
-            const double CUP_TO_ML = 236.5882365;
-
-
-            double cups = milliliters / CUP_TO_ML;
-
-            return cups;
-        }
-
-
-        
-
-        private static string unitStandard(string input)
-        {
-            string unit = input.Trim().ToLower();
-            if (unit == "teaspoon" || unit == "teaspoons" || unit == "tsp")
-            {
-                return "tsp";
-            }
-
-            if (unit == "tablespoon" || unit == "tablespoons" || unit == "tbsp")
-            {
-                return "Tbsp";
-            }
-
-            if (unit == "cup" || unit == "cups")
-            {
-                return "cup";
-            }
-
-            if (unit == "ounce" || unit == "ounces" || unit == "oz")
-            {
-                return "oz";
-            }
-
-            if (unit == "stick" || unit == "sticks")
-            {
-                return unit.Trim().ToLower();
-            }
-
-            return "ERROR";
-        }
-
-        private static string roundUnit(string unit)
-        {
-
-            return unit;
-        }
         private void button1_Click(object sender, EventArgs e)
         {
             openFileDialog1.Filter = "Text|*.txt|All|*.*";
@@ -116,7 +66,7 @@ namespace KitchenScale
                     unit = leftOver.Split(" ", 2)[0];
                     ingredient = leftOver.Split(" ", 2)[1];
 
-                    string standardized = unitStandard(unit);
+                    string standardized = KitchenCalculator.unitStandard(unit);
                     Debug.WriteLine(standardized);
                     if (imperialMetric.ContainsKey(standardized))
                     {
@@ -164,8 +114,6 @@ namespace KitchenScale
 
                     string line;
 
-
-
                     while ((line = sr.ReadLine()) != null)
                     {
                         int count = 0;
@@ -210,7 +158,7 @@ namespace KitchenScale
 
                         if (amount.Contains('/'))
                         {
-                            scaled = fractionScale(amount, resizeMultiplier);
+                            scaled = KitchenCalculator.getResized(amount, resizeMultiplier);
                         }
                         else
                         {
