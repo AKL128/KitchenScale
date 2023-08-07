@@ -1,5 +1,7 @@
 using System.Diagnostics;
 using System.Numerics;
+using KitchenLibrary;
+
 
 namespace KitchenScale
 {
@@ -13,6 +15,10 @@ namespace KitchenScale
 
         private int resizeMultiplier = 1;
 
+        bool metricSelected = false;
+
+        bool imperialSelected = false;
+
         Dictionary<string, string> imperialMetric = new Dictionary<string, string>()
         {
             {"tsp", "ml"},
@@ -24,66 +30,19 @@ namespace KitchenScale
             {"sticks", "sticks"},
         };
 
-
-
-        private static string fractionScale(string input, int scale)
+        public static double Convert(int milliliters)
         {
-            int wholeNumber = 0;
-            string fraction;
-            int numerator;
-            int denominator;
-            string? result = "";
 
-            bool hasWholeNumber = false;
-
-            hasWholeNumber = input.Split(" ").Length > 1;
-
-            fraction = input;
-
-            if (hasWholeNumber == true)
-            {
-                wholeNumber = int.Parse(input.Split(" ")[0]);
-                wholeNumber = wholeNumber * scale;
-                fraction = input.Split(" ")[1];
-            }
-
-            numerator = int.Parse(fraction.Split("/")[0]);
-
-            denominator = int.Parse(fraction.Split("/")[1]);
+            const double CUP_TO_ML = 236.5882365;
 
 
-            numerator = numerator * scale;
+            double cups = milliliters / CUP_TO_ML;
 
-            Fraction fraction1 = new Fraction(numerator, denominator);
-            if (numerator >= denominator)
-            {
-                wholeNumber += numerator / denominator;
-            }
-
-            int quotient = fraction1.getNumerator / fraction1.getDenominator;
-            Debug.WriteLine("Q: " + quotient);
-            int remainder = fraction1.getNumerator - fraction1.getDenominator * quotient;
-            Debug.WriteLine(fraction1.getNumerator + "-" + fraction1.getDenominator + "*" + quotient);
-            fraction1 = new Fraction(remainder, denominator);
-
-            fraction1 = fraction1.reduce();
-
-            Debug.WriteLine($"{fraction1.getNumerator} / {fraction1.getDenominator}");
-            if (wholeNumber == 0)
-            {
-                return result = fraction1.getString();
-            }
-            else
-            {
-                result = wholeNumber.ToString();
-                result += " " + fraction1.getString();
-                return result;
-            }
-            
-
-
-            return result;
+            return cups;
         }
+
+
+        
 
         private static string unitStandard(string input)
         {
@@ -162,14 +121,17 @@ namespace KitchenScale
                     if (imperialMetric.ContainsKey(standardized))
                     {
                         comboBox1.SelectedIndex = 1;
+                        imperialSelected = true;
                     }
                     else if (imperialMetric.ContainsValue(standardized))
                     {
                         comboBox1.SelectedIndex = 2;
+                        metricSelected = true;
                     }
                     else
                     {
                         comboBox1.SelectedIndex = 1;
+                        imperialSelected = true;
                     }
                 }
                 catch
@@ -232,6 +194,19 @@ namespace KitchenScale
 
                         unit = leftOver.Split(" ", 2)[0];
                         ingredient = leftOver.Split(" ", 2)[1];
+
+                        if (imperialSelected == true)
+                        {
+
+                        }
+                        else if (metricSelected == true)
+                        {
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error");
+                        }
 
                         if (amount.Contains('/'))
                         {
@@ -296,72 +271,5 @@ namespace KitchenScale
         }
     }
 
-    internal class Fraction
-    {
-        private int numerator;
-        private int denominator;
-        public Fraction(int n, int d)
-        {
-            this.numerator = n;
-            this.denominator = d;
-        }
-        public int getNumerator
-        {
-            get { return this.numerator; }
-            set { this.numerator = value; }
-        }
-
-        public int getDenominator
-        {
-            get { return this.denominator; }
-            set
-            {
-                if (value == 0)
-                {
-                    throw new Exception("0 denominator");
-                }
-
-                this.denominator = value;
-            }
-        }
-
-        public string getString()
-        {
-            if (numerator == 0)
-            {
-                return "";
-            }
-            if (denominator == 1)
-            {
-                return numerator.ToString();
-            }
-            else
-            {
-                return numerator.ToString() + "/" + denominator.ToString();
-            }
-        }
-
-        public static int getGCD(int a, int b)
-        {
-            if (b == 0)
-            {
-                return a;
-            }
-            else
-            {
-                return getGCD(b, a % b);
-            }
-        }
-
-        public Fraction reduce()
-        {
-            int gcd = getGCD(numerator, denominator);
-            return new Fraction(numerator / gcd, denominator / gcd);
-        }
-
-        public Fraction multiply(int constant)
-        {
-            return new Fraction(this.numerator * constant, this.denominator);
-        }
-    }
+    
 }
