@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KitchenScale", "KitchenScal
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KitchenLibrary", "KitchenLibrary\KitchenLibrary.csproj", "{975649FA-590F-49A4-BB8F-F2BC4828611B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KitchenScaleConsoleApp", "KitchenScale\KitchenScaleConsoleApp\KitchenScaleConsoleApp.csproj", "{31556390-D21B-4DBF-AD75-8BAFE7C149FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{975649FA-590F-49A4-BB8F-F2BC4828611B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{975649FA-590F-49A4-BB8F-F2BC4828611B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{975649FA-590F-49A4-BB8F-F2BC4828611B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31556390-D21B-4DBF-AD75-8BAFE7C149FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31556390-D21B-4DBF-AD75-8BAFE7C149FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31556390-D21B-4DBF-AD75-8BAFE7C149FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31556390-D21B-4DBF-AD75-8BAFE7C149FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
