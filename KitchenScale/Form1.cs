@@ -15,20 +15,11 @@ namespace KitchenScale
 
         private int resizeMultiplier = 1;
 
+        private List<Ingredient> recipeList;
+
         bool metricSelected = false;
 
         bool imperialSelected = false;
-
-        Dictionary<string, string> imperialMetric = new Dictionary<string, string>()
-        {
-            {"tsp", "ml"},
-            {"Tbsp", "ml"},
-            {"cup", "cup"},
-            {"cups", "cups"},
-            {"oz", "gram"},
-            {"stick", "stick"},
-            {"sticks", "sticks"},
-        };       
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -37,7 +28,26 @@ namespace KitchenScale
             {
 
                 filePath = openFileDialog1.FileName;
-                try
+
+                recipeList = RecipeParser.inputIngredient(filePath);
+                Ingredient[] recipeArray = recipeList.ToArray();
+
+                string measuringSystem = RecipeParser.getMeasuringSystem(recipeArray[0].getUnit());
+
+                if (measuringSystem == "imperial")
+                {
+                    comboBox1.SelectedIndex = 1;
+                }
+                else if (measuringSystem == "metric")
+                {
+                    comboBox1.SelectedIndex = 2;
+                }
+                else
+                {
+                    comboBox1.SelectedIndex = 1;
+                }
+                textBox1.Text = openFileDialog1.FileName;
+                /*try
                 {
                     StreamReader sr = new StreamReader(filePath);
 
@@ -87,8 +97,8 @@ namespace KitchenScale
                 catch
                 {
                     MessageBox.Show("Error opening file");
-                }
-                textBox1.Text = openFileDialog1.FileName;
+                }*/
+
 
 
             }
@@ -108,7 +118,9 @@ namespace KitchenScale
         {
             try
             {
-                StreamReader sr = new StreamReader(filePath);
+                RecipeParser.outputRecipe("NewRecipe.txt", recipeList, resizeMultiplier);
+
+                /*StreamReader sr = new StreamReader(filePath);
                 using (StreamWriter sw = new StreamWriter("NewRecipe.txt"))
                 {
 
@@ -143,7 +155,7 @@ namespace KitchenScale
                         unit = leftOver.Split(" ", 2)[0];
                         ingredient = leftOver.Split(" ", 2)[1];
 
-                        if (imperialSelected == true)
+                        *//*if (imperialSelected == true)
                         {
 
                         }
@@ -154,7 +166,7 @@ namespace KitchenScale
                         else
                         {
                             MessageBox.Show("Error");
-                        }
+                        }*//*
 
                         if (amount.Contains('/'))
                         {
@@ -171,7 +183,7 @@ namespace KitchenScale
 
                 }
 
-                sr.Close();
+                sr.Close();*/
 
             }
             catch (Exception err)

@@ -9,9 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\KitchenLibrary\KitchenLibrary.csproj" />
     <ProjectReference Include="..\KitchenLibrary\KitchenLibrary.csproj" />
-    <ProjectReference Include="KitchenScaleConsoleApp\KitchenScaleConsoleApp.csproj" />
   </ItemGroup>
 
   <ItemGroup>

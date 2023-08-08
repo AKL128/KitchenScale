@@ -4,14 +4,6 @@ namespace KitchenLibrary
 {
     public static class KitchenCalculator
     {
-        /*public string fractionInput { get; set; }
-        public int resizeScale { get; set; }
-
-        public KitchenCalculator(string fractionI, int resizeS)
-        {
-            fractionInput = fractionI;
-            resizeScale = resizeS;
-        }*/
         public static string getResized(string input, int scale)
         {
             int wholeNumber = 0;
