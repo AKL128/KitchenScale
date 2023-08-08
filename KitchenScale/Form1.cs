@@ -47,59 +47,6 @@ namespace KitchenScale
                     comboBox1.SelectedIndex = 1;
                 }
                 textBox1.Text = openFileDialog1.FileName;
-                /*try
-                {
-                    StreamReader sr = new StreamReader(filePath);
-
-                    string firstLine = sr.ReadLine();
-
-                    int count = 0;
-
-                    string amount;
-                    string unit;
-                    string ingredient;
-
-                    string leftOver;
-
-                    foreach (char c in firstLine)
-                    {
-                        if (Char.IsLetter(c))
-                        {
-                            break;
-                        }
-                        count++;
-                    }
-
-                    amount = firstLine.Substring(0, count).TrimEnd();
-                    leftOver = firstLine.Substring(count).TrimEnd();
-
-                    unit = leftOver.Split(" ", 2)[0];
-                    ingredient = leftOver.Split(" ", 2)[1];
-
-                    string standardized = KitchenCalculator.unitStandard(unit);
-                    Debug.WriteLine(standardized);
-                    if (imperialMetric.ContainsKey(standardized))
-                    {
-                        comboBox1.SelectedIndex = 1;
-                        imperialSelected = true;
-                    }
-                    else if (imperialMetric.ContainsValue(standardized))
-                    {
-                        comboBox1.SelectedIndex = 2;
-                        metricSelected = true;
-                    }
-                    else
-                    {
-                        comboBox1.SelectedIndex = 1;
-                        imperialSelected = true;
-                    }
-                }
-                catch
-                {
-                    MessageBox.Show("Error opening file");
-                }*/
-
-
 
             }
         }
@@ -119,72 +66,6 @@ namespace KitchenScale
             try
             {
                 RecipeParser.outputRecipe("NewRecipe.txt", recipeList, resizeMultiplier);
-
-                /*StreamReader sr = new StreamReader(filePath);
-                using (StreamWriter sw = new StreamWriter("NewRecipe.txt"))
-                {
-
-                    string line;
-
-                    while ((line = sr.ReadLine()) != null)
-                    {
-                        int count = 0;
-                        string amount;
-                        string leftOver;
-
-                        string unit;
-                        string ingredient;
-
-                        int temp;
-                        string scaled;
-
-                        foreach (char c in line)
-                        {
-                            if (Char.IsLetter(c))
-                            {
-                                break;
-                            }
-                            count++;
-                        }
-
-                        amount = line.Substring(0, count).TrimEnd();
-                        Debug.WriteLine(amount);
-                        leftOver = line.Substring(count).TrimEnd();
-                        Debug.WriteLine(leftOver);
-
-                        unit = leftOver.Split(" ", 2)[0];
-                        ingredient = leftOver.Split(" ", 2)[1];
-
-                        *//*if (imperialSelected == true)
-                        {
-
-                        }
-                        else if (metricSelected == true)
-                        {
-
-                        }
-                        else
-                        {
-                            MessageBox.Show("Error");
-                        }*//*
-
-                        if (amount.Contains('/'))
-                        {
-                            scaled = KitchenCalculator.getResized(amount, resizeMultiplier);
-                        }
-                        else
-                        {
-                            temp = int.Parse(amount) * resizeMultiplier;
-                            scaled = temp.ToString();
-                        }
-
-                        sw.WriteLine(scaled + " " + unit + " " + ingredient);
-                    }
-
-                }
-
-                sr.Close();*/
-
             }
             catch (Exception err)
             {

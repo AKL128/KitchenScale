@@ -5,7 +5,9 @@ VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KitchenScale", "KitchenScale\KitchenScale.csproj", "{7C3C1D63-B030-474F-B473-A14E29B3F81B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KitchenLibrary", "KitchenLibrary\KitchenLibrary.csproj", "{8C427E03-3555-4E44-BB09-6A001F790209}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KitchenLibrary", "KitchenLibrary\KitchenLibrary.csproj", "{8C427E03-3555-4E44-BB09-6A001F790209}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KitchenScaleConsoleApp", "KitchenScaleConsoleApp\KitchenScaleConsoleApp.csproj", "{FB1B8704-3DBE-402A-9BD6-DE0C0B800848}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{8C427E03-3555-4E44-BB09-6A001F790209}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C427E03-3555-4E44-BB09-6A001F790209}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C427E03-3555-4E44-BB09-6A001F790209}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB1B8704-3DBE-402A-9BD6-DE0C0B800848}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB1B8704-3DBE-402A-9BD6-DE0C0B800848}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB1B8704-3DBE-402A-9BD6-DE0C0B800848}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB1B8704-3DBE-402A-9BD6-DE0C0B800848}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
