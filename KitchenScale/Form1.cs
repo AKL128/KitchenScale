@@ -66,6 +66,9 @@ namespace KitchenScale
             try
             {
                 RecipeParser.outputRecipe("NewRecipe.txt", recipeList, resizeMultiplier);
+
+                textBox2.Text = File.ReadAllText("NewRecipe.txt");
+
             }
             catch (Exception err)
             {
@@ -91,26 +94,34 @@ namespace KitchenScale
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch(comboBox2.SelectedIndex)
+            switch (comboBox2.SelectedIndex)
             {
                 case 0:
                     resizeMultiplier = 2;
                     break;
-                case 1: 
+                case 1:
                     resizeMultiplier = 3;
                     break;
-                case 2: 
+                case 2:
                     resizeMultiplier = 4;
                     break;
-                case 3: 
+                case 3:
                     resizeMultiplier = 5;
                     break;
-                default: 
-                    resizeMultiplier = 1; 
+                default:
+                    resizeMultiplier = 1;
                     break;
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (textBox2.Text != "")
+                Clipboard.SetDataObject(textBox2.Text, true);
+            else
+                MessageBox.Show("No text selected");
+        }
     }
 
-    
+
 }
