@@ -39,6 +39,8 @@
             label3 = new Label();
             textBox2 = new TextBox();
             button3 = new Button();
+            folderBrowserDialog1 = new FolderBrowserDialog();
+            saveFileDialog1 = new SaveFileDialog();
             SuspendLayout();
             // 
             // button1
@@ -77,7 +79,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(606, 290);
+            button2.Location = new Point(606, 365);
             button2.Margin = new Padding(4, 5, 4, 5);
             button2.Name = "button2";
             button2.Size = new Size(107, 38);
@@ -154,7 +156,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Beige;
             ClientSize = new Size(1788, 994);
-            Controls.Add(button3);
             Controls.Add(textBox2);
             Controls.Add(label3);
             Controls.Add(comboBox2);
@@ -189,5 +190,8 @@
         private Label label3;
         private TextBox textBox2;
         private Button button3;
+        private Button button4;
+        private FolderBrowserDialog folderBrowserDialog1;
+        private SaveFileDialog saveFileDialog1;
     }
 }

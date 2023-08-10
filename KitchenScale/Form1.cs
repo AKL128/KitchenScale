@@ -63,18 +63,22 @@ namespace KitchenScale
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            try
+            saveFileDialog1.Filter = "Text|*.txt|All|*.*";
+            saveFileDialog1.FileName = ".txt";
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                RecipeParser.outputRecipe("NewRecipe.txt", recipeList, resizeMultiplier);
+                try
+                {
+                    RecipeParser.outputRecipe(saveFileDialog1.FileName, recipeList, resizeMultiplier);
 
-                textBox2.Text = File.ReadAllText("NewRecipe.txt");
+                    textBox2.Text = File.ReadAllText(saveFileDialog1.FileName);
 
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show("No File selected. Please select a file to run program.");
+                }
             }
-            catch (Exception err)
-            {
-                MessageBox.Show("No File selected. Please select a file to run program.");
-            }
-
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -121,7 +125,8 @@ namespace KitchenScale
             else
                 MessageBox.Show("No text selected");
         }
-    }
 
+
+    }
 
 }
