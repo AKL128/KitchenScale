@@ -17,10 +17,6 @@ namespace KitchenScale
 
         private List<Ingredient> recipeList;
 
-        bool metricSelected = false;
-
-        bool imperialSelected = false;
-
         private void button1_Click(object sender, EventArgs e)
         {
             openFileDialog1.Filter = "Text|*.txt|All|*.*";
