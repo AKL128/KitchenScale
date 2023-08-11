@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KitchenScale", "KitchenScal
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KitchenLibrary", "KitchenLibrary\KitchenLibrary.csproj", "{8C427E03-3555-4E44-BB09-6A001F790209}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KitchenScaleConsoleApp", "KitchenScaleConsoleApp\KitchenScaleConsoleApp.csproj", "{FB1B8704-3DBE-402A-9BD6-DE0C0B800848}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KitchenScaleConsoleApp", "KitchenScaleConsoleApp\KitchenScaleConsoleApp.csproj", "{FB1B8704-3DBE-402A-9BD6-DE0C0B800848}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "tests\tests.csproj", "{85249C41-9973-4CE6-8AC1-9D32A5B96B6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{FB1B8704-3DBE-402A-9BD6-DE0C0B800848}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB1B8704-3DBE-402A-9BD6-DE0C0B800848}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB1B8704-3DBE-402A-9BD6-DE0C0B800848}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85249C41-9973-4CE6-8AC1-9D32A5B96B6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85249C41-9973-4CE6-8AC1-9D32A5B96B6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85249C41-9973-4CE6-8AC1-9D32A5B96B6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85249C41-9973-4CE6-8AC1-9D32A5B96B6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
