@@ -36,9 +36,6 @@ namespace KitchenLibrary
                         string unit;
                         string name;
 
-                        int temp;
-                        string scaled;
-
                         foreach (char c in line)
                         {
                             if (Char.IsLetter(c))
@@ -46,9 +43,7 @@ namespace KitchenLibrary
                                 break;
                             }
                             count++;
-                        }
-
-                        
+                        }                  
 
                         amount = line.Substring(0, count).TrimEnd();
                         leftOver = line.Substring(count).TrimEnd();
@@ -61,33 +56,6 @@ namespace KitchenLibrary
                         Ingredient component = new Ingredient(amount, unit, name);
 
                         recipeList.Add(component);
-
-/*                      
- *                      
-                        if (imperialSelected == true)
-                        {
-                            if (amount.Contains('/'))
-                            {
-                                scaled = KitchenCalculator.getResized(amount, resizeMultiplier);
-                            }
-                            else
-                            {
-                                temp = int.Parse(amount) * resizeMultiplier;
-                                scaled = temp.ToString();
-                            }
-                        }
-                        else if (metricSelected == true)
-                        {
-
-                        }
-                        else
-                        {
-                            MessageBox.Show("No measuring system selected");
-                        }
-
-                        
-
-                        sw.WriteLine(scaled + " " + unit + " " + ingredient);*/
                     }
 
                 }
