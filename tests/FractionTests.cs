@@ -30,13 +30,12 @@ namespace tests
 
         [Theory]
         [MemberData(nameof(FractionTestData.GetFractionFromDataGenerator), MemberType = typeof(FractionTestData))]
-        public void reduce_tests(int fractionNumerator, int fractionDenominator, Tuple<int, int> expected)
+        public void reduce_tests(Fraction testFraction, Fraction expectedFraction)
         {
-            Fraction frac = new Fraction(fractionNumerator, fractionDenominator);
-            frac.reduce();
+            testFraction = testFraction.reduce();
 
-            Fraction fracExpected = new Fraction(expected.Item1, expected.Item2);
-
+            Assert.Equal(expectedFraction.getNumerator, testFraction.getNumerator);
+            Assert.Equal(expectedFraction.getDenominator, testFraction.getDenominator);
         }
 
     }
@@ -52,14 +51,8 @@ namespace tests
 
         public static IEnumerable<object[]> GetFractionFromDataGenerator()
         {
-            yield return new object[]
-            {
-            new Fraction (0, 0),
-            new Fraction (1, 2),
-            new Fraction (2, 4),
-            new Fraction (9, 0),
-            new Fraction (0, 8),
-            };
+            yield return new object[] { new Fraction(0, 2), new Fraction(0, 1) };
+            yield return new object[] { new Fraction(2, 4), new Fraction(1, 2) };
         }
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
