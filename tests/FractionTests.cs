@@ -1,6 +1,7 @@
 using KitchenLibrary;
 using System;
 using System.Collections;
+using System.Reflection;
 
 namespace tests
 {
@@ -38,6 +39,16 @@ namespace tests
             Assert.Equal(expectedFraction.getDenominator, testFraction.getDenominator);
         }
 
+        [Theory]
+        [MemberData(nameof(FractionTestData.GetFractionMultiplyData), MemberType = typeof(FractionTestData))]
+        public void multiplyFraction_tests(Fraction testFraction, int scale, Fraction expectedFraction)
+        {
+            testFraction = testFraction.multiply(scale);
+
+            Assert.Equal(expectedFraction.getNumerator, testFraction.getNumerator);
+            Assert.Equal(expectedFraction.getDenominator, testFraction.getDenominator);
+        }
+
     }
 
     public class FractionTestData : IEnumerable<object[]>
@@ -53,6 +64,13 @@ namespace tests
         {
             yield return new object[] { new Fraction(0, 2), new Fraction(0, 1) };
             yield return new object[] { new Fraction(2, 4), new Fraction(1, 2) };
+        }
+        public static IEnumerable<object[]> GetFractionMultiplyData()
+        {
+            yield return new object[] { new Fraction(0, 2), 2, new Fraction(0, 2) };
+            yield return new object[] { new Fraction(2, 4), 2, new Fraction(4, 4) };
+            yield return new object[] { new Fraction(6, 9), 0, new Fraction(0, 9) };
+            yield return new object[] { new Fraction(8, 16), 4, new Fraction(32, 16) };
         }
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
